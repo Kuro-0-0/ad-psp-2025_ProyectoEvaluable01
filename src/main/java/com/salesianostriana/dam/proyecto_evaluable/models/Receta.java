@@ -1,6 +1,6 @@
 package com.salesianostriana.dam.proyecto_evaluable.models;
 
-
+import com.salesianostriana.dam.proyecto_evaluable.models.extras.Dificultad;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Ingrediente {
+public class Receta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,8 +20,14 @@ public class Ingrediente {
 
     @Column(unique = true)
     private String nombre;
+    private Integer tiempoPreparacionMin;
+    private Dificultad dificultad;
 
-    @ManyToMany(mappedBy = "ingredientes")
-    private List<Receta> recetas;
+    @ManyToMany
+    private List<Ingrediente> ingredientes;
+
+    @ManyToOne
+    private Categoria categoria;
+
 
 }
