@@ -14,7 +14,7 @@ public class CategoriaResponseDTO {
     private String nombre;
     private String descripcion;
 
-    private static CategoriaResponseDTO toDTO(Categoria c) {
+    public static CategoriaResponseDTO toDTO(Categoria c) {
         return CategoriaResponseDTO.builder()
                 .id(c.getId())
                 .nombre(c.getNombre())
@@ -22,7 +22,7 @@ public class CategoriaResponseDTO {
                 .build();
     }
 
-    private Categoria fromDTO() {
+    public Categoria fromDTO() {
         return Categoria.builder()
                 .id(this.getId())
                 .nombre(this.getNombre())
