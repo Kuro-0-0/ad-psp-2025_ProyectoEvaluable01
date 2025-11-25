@@ -21,7 +21,8 @@ public class Ingrediente {
     @Column(unique = true)
     private String nombre;
 
-    @ManyToMany(mappedBy = "ingredientes")
-    private List<Receta> recetas;
+    @OneToMany
+    private List<RecetaIngrediente> recetas;
+
 
 }

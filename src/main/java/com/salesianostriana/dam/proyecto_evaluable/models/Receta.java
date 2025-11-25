@@ -23,8 +23,8 @@ public class Receta {
     private Integer tiempoPreparacionMin;
     private Dificultad dificultad;
 
-    @ManyToMany
-    private List<Ingrediente> ingredientes;
+    @OneToMany
+    private List<RecetaIngrediente> ingredientes;
 
     @ManyToOne
     private Categoria categoria;
