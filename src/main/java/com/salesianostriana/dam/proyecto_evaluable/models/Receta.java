@@ -21,10 +21,8 @@ public class Receta {
     @Column(unique = true)
     private String nombre;
     private Integer tiempoPreparacionMin;
+    @Enumerated(EnumType.STRING)
     private Dificultad dificultad;
-
-    @OneToMany
-    private List<RecetaIngrediente> ingredientes;
 
     @ManyToOne
     private Categoria categoria;

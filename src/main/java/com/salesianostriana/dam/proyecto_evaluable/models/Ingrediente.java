@@ -21,8 +21,4 @@ public class Ingrediente {
     @Column(unique = true)
     private String nombre;
 
-    @OneToMany
-    private List<RecetaIngrediente> recetas;
-
-
 }
