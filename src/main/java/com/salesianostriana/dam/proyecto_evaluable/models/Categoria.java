@@ -17,4 +17,12 @@ public class Categoria {
     @Column(unique = true)
     private String nombre;
     private String descripcion;
+
+    public Categoria modify(Categoria categoria) {
+        return Categoria.builder()
+                .id(this.getId())
+                .nombre(categoria.getNombre())
+                .descripcion(categoria.getDescripcion())
+                .build();
+    }
 }
