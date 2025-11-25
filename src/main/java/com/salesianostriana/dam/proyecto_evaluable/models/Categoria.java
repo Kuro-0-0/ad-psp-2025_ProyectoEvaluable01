@@ -3,6 +3,8 @@ package com.salesianostriana.dam.proyecto_evaluable.models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Getter @Setter
 @AllArgsConstructor @NoArgsConstructor @Builder
