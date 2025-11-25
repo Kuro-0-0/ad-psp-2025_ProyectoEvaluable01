@@ -4,7 +4,9 @@ import com.salesianostriana.dam.proyecto_evaluable.models.extras.Dificultad;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -20,12 +22,19 @@ public class Receta {
 
     @Column(unique = true)
     private String nombre;
+
     private Integer tiempoPreparacionMin;
+
     @Enumerated(EnumType.STRING)
     private Dificultad dificultad;
 
     @ManyToOne
     private Categoria categoria;
+
+    @OneToMany(mappedBy = "receta", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    @ToString.Exclude
+    private Set<RecetaIngrediente> ingredientes = new HashSet<>();
 
 
 }
