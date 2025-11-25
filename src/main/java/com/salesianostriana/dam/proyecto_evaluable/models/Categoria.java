@@ -15,4 +15,9 @@ public class Categoria {
     @Column(unique = true)
     private String nombre;
     private String descripcion;
+
+    @OneToMany(mappedBy = "categoria",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<Receta> recetas;
 }
