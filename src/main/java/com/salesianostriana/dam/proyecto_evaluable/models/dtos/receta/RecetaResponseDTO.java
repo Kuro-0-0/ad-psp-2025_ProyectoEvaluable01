@@ -18,7 +18,7 @@ public class RecetaResponseDTO {
     private String dificultad;
     private String categoria;
 
-    private static RecetaResponseDTO toDTO(Receta r) {
+    public static RecetaResponseDTO toDTO(Receta r) {
         return RecetaResponseDTO.builder()
                 .id(r.getId())
                 .nombre(r.getNombre())
