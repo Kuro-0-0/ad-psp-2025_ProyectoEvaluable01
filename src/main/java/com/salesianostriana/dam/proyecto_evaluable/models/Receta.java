@@ -37,4 +37,14 @@ public class Receta {
     private Set<RecetaIngrediente> ingredientes = new HashSet<>();
 
 
+    public Receta modify(Receta receta) {
+        return Receta.builder()
+                .id(this.id)
+                .nombre(receta.getNombre())
+                .tiempoPreparacionMin(receta.getTiempoPreparacionMin())
+                .dificultad(receta.getDificultad())
+                .categoria(receta.getCategoria())
+                .ingredientes(this.ingredientes)
+                .build();
+    }
 }
