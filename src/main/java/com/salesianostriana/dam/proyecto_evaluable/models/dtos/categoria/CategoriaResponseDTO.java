@@ -22,12 +22,4 @@ public class CategoriaResponseDTO {
                 .build();
     }
 
-    public Categoria fromDTO() {
-        return Categoria.builder()
-                .id(this.getId())
-                .nombre(this.getNombre())
-                .descripcion(this.getDescripcion())
-                .build();
-    }
-
 }
