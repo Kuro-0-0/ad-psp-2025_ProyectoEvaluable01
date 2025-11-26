@@ -60,9 +60,10 @@ public class CategoriaService {
         return CategoriaResponseDTO.toDTO(categoriaOriginal);
     }
 
-    public void delete(Long id) {
+    public String delete(Long id) {
         Categoria categoriaOriginal = checkIfExist(id);
         repository.delete(categoriaOriginal);
+        return "Categoría con id " + id + " eliminada correctamente.";
     }
 
 }
