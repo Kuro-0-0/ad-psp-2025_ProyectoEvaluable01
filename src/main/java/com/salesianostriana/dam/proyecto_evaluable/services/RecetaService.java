@@ -2,6 +2,8 @@ package com.salesianostriana.dam.proyecto_evaluable.services;
 
 import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.NombreDuplicadoException;
 import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.TiempoInvalidoException;
+import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.badArguments.CategoriaBadArgumentsException;
+import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.notFound.CategoriaNotFoundException;
 import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.notFound.RecetaNotFoundException;
 import com.salesianostriana.dam.proyecto_evaluable.models.Categoria;
 import com.salesianostriana.dam.proyecto_evaluable.models.Receta;
@@ -23,7 +25,12 @@ public class RecetaService {
 
     public Receta fromDTO(RecetaRequestDTO recetaDTO) {
 
-        Categoria c = categoriaService.checkIfExist(recetaDTO.getCategoriaID());
+        Categoria c = null;
+        try {
+            c = categoriaService.checkIfExist(recetaDTO.getCategoriaID());
+        } catch (CategoriaNotFoundException e) {
+            throw new CategoriaBadArgumentsException("El ID de categoría ("+recetaDTO.getCategoriaID()+") proporcionado no existe.");
+        }
 
         return Receta.builder()
                 .nombre(recetaDTO.getNombre())
