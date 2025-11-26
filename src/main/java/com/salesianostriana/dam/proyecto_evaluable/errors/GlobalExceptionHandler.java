@@ -2,7 +2,7 @@ package com.salesianostriana.dam.proyecto_evaluable.errors;
 
 import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.IngredienteYaAnadidoException;
 import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.NombreDuplicadoException;
-import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.EntidadNoEncontradaException;
+import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.EntidadNotFoundException;
 import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.TiempoInvalidoException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
@@ -34,8 +34,8 @@ public class GlobalExceptionHandler {
         return pd;
     }
 
-    @ExceptionHandler(EntidadNoEncontradaException.class)
-    public ProblemDetail handleEntidadNoEncontradaExceptionException(EntidadNoEncontradaException ex) {
+    @ExceptionHandler(EntidadNotFoundException.class)
+    public ProblemDetail handleEntidadNoEncontradaExceptionException(EntidadNotFoundException ex) {
         ProblemDetail pd = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, ex.getMessage());
 
         pd.setTitle("La entidad solicitada no se encuentra en la BBDD.");
