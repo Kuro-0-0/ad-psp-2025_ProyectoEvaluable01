@@ -1,12 +1,11 @@
 package com.salesianostriana.dam.proyecto_evaluable.services;
 
-import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.EntidadNotFoundException;
 import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.NombreDuplicadoException;
+import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.notFound.IngredienteNotFoundException;
 import com.salesianostriana.dam.proyecto_evaluable.models.Ingrediente;
 import com.salesianostriana.dam.proyecto_evaluable.models.dtos.ingrediente.IngredienteRequestDTO;
 import com.salesianostriana.dam.proyecto_evaluable.models.dtos.ingrediente.IngredienteResponseDTO;
 import com.salesianostriana.dam.proyecto_evaluable.repositories.IngredienteRepository;
-import com.salesianostriana.dam.proyecto_evaluable.services.base.BaseServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,27 +13,25 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class IngredienteService extends BaseServiceImpl<Ingrediente, Long, IngredienteRepository> {
+public class IngredienteService {
 
-    private void findByNombre(String nombre) {
-        if (repository.findByNombre(nombre).isPresent()) {
-            throw new NombreDuplicadoException("ingrediente",nombre);
-        }
-    }
+    private final IngredienteRepository repository;
 
     public IngredienteResponseDTO create(IngredienteRequestDTO ingredienteDTO) {
         Ingrediente ingrediente = ingredienteDTO.fromDTO();
 
-        findByNombre(ingredienteDTO.getNombre());
+        if (repository.findByNombre(ingredienteDTO.getNombre()).isPresent()) {
+            throw new NombreDuplicadoException("ingrediente",ingredienteDTO.getNombre());
+        }
 
-        return IngredienteResponseDTO.toDTO(save(ingrediente));
+        return IngredienteResponseDTO.toDTO(repository.save(ingrediente));
     }
 
     public List<IngredienteResponseDTO> list() {
-        List<Ingrediente> listadoIngredientes = findAll();
+        List<Ingrediente> listadoIngredientes = repository.findAll();
 
         if (listadoIngredientes.isEmpty()) {
-            throw new EntidadNotFoundException("ingrediente");
+            throw new IngredienteNotFoundException();
         }
 
         return listadoIngredientes.stream().map(IngredienteResponseDTO::toDTO).toList();

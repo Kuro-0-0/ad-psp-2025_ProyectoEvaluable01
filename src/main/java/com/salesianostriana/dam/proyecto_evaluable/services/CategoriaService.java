@@ -1,12 +1,11 @@
 package com.salesianostriana.dam.proyecto_evaluable.services;
 
-import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.EntidadNotFoundException;
+import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.notFound.CategoriaNotFoundException;
 import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.NombreDuplicadoException;
 import com.salesianostriana.dam.proyecto_evaluable.models.Categoria;
 import com.salesianostriana.dam.proyecto_evaluable.models.dtos.categoria.CategoriaRequestDTO;
 import com.salesianostriana.dam.proyecto_evaluable.models.dtos.categoria.CategoriaResponseDTO;
 import com.salesianostriana.dam.proyecto_evaluable.repositories.CategoriaRepository;
-import com.salesianostriana.dam.proyecto_evaluable.services.base.BaseServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,39 +13,40 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class CategoriaService extends BaseServiceImpl<Categoria, Long, CategoriaRepository> {
+public class CategoriaService {
 
     private final CategoriaRepository repository;
 
-    private void findByNombre(String nombre) {
-        if (repository.findByNombre(nombre).isPresent()) {
-            throw new NombreDuplicadoException("categoria", nombre);
-        }
+    public Categoria checkIfExist(Long id) {
+        return repository.findById(id).orElseThrow(() -> new CategoriaNotFoundException(id));
     }
 
     public CategoriaResponseDTO create(CategoriaRequestDTO categoriaDTO) {
 
-        findByNombre(categoriaDTO.getNombre());
+        if (repository.findByNombre(categoriaDTO.getNombre()).isPresent()) {
+            throw new NombreDuplicadoException("categoria", categoriaDTO.getNombre());
+        }
 
-        return CategoriaResponseDTO.toDTO(save(categoriaDTO.fromDTO()));
+        return CategoriaResponseDTO.toDTO(repository.save(categoriaDTO.fromDTO()));
     }
 
     public List<CategoriaResponseDTO> list() {
-        List<Categoria> listadoCategorias = findAll();
+        List<Categoria> listadoCategorias = repository.findAll();
 
         if (listadoCategorias.isEmpty()) {
-            throw new EntidadNotFoundException("categorías");
+            throw new CategoriaNotFoundException();
         }
 
         return listadoCategorias.stream().map(CategoriaResponseDTO::toDTO).toList();
     }
 
     public CategoriaResponseDTO read(Long id) {
-        return CategoriaResponseDTO.toDTO(checkIfExist("categoria",id));
+        return CategoriaResponseDTO.toDTO(checkIfExist(id));
     }
 
+
     public CategoriaResponseDTO update(Long id, CategoriaRequestDTO categoriaDTO) {
-        Categoria categoriaOriginal = checkIfExist("categoria",id);
+        Categoria categoriaOriginal = checkIfExist(id);
 
         if (
                 !categoriaOriginal.getNombre().equalsIgnoreCase(categoriaDTO.getNombre()) &&
@@ -61,8 +61,8 @@ public class CategoriaService extends BaseServiceImpl<Categoria, Long, Categoria
     }
 
     public void delete(Long id) {
-        Categoria categoriaOriginal = checkIfExist("categoria",id);
-        delete(categoriaOriginal);
+        Categoria categoriaOriginal = checkIfExist(id);
+        repository.delete(categoriaOriginal);
     }
 
 }

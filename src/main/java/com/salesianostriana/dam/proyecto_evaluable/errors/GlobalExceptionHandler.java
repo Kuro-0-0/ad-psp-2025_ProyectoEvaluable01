@@ -2,7 +2,7 @@ package com.salesianostriana.dam.proyecto_evaluable.errors;
 
 import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.IngredienteYaAnadidoException;
 import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.NombreDuplicadoException;
-import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.EntidadNotFoundException;
+import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.notFound.EntidadNotFoundException;
 import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.TiempoInvalidoException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
