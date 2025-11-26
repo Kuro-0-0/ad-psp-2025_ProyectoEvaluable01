@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.proyecto_evaluable.services.base;
 
+import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.EntidadNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -39,5 +40,11 @@ public abstract class BaseServiceImpl<T, ID, R extends JpaRepository<T, ID>> imp
     @Override
     public void delete(T entity) {
         repository.delete(entity);
+    }
+
+    public T checkIfExist(String entityName ,ID id) {
+        return repository.findById(id).orElseThrow(() ->
+                new EntidadNotFoundException(entityName, (Long) id)
+        );
     }
 }

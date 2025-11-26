@@ -11,3 +11,4 @@ public interface RecetaRepository extends JpaRepository<Receta,Long> {
     Optional<Receta> findByNombre(String nombre);
 
 }
+    
