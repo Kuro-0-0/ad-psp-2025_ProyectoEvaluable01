@@ -3,8 +3,6 @@ package com.salesianostriana.dam.proyecto_evaluable.services;
 import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.notFound.CategoriaNotFoundException;
 import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.NombreDuplicadoException;
 import com.salesianostriana.dam.proyecto_evaluable.models.Categoria;
-import com.salesianostriana.dam.proyecto_evaluable.models.dtos.categoria.CategoriaRequestDTO;
-import com.salesianostriana.dam.proyecto_evaluable.models.dtos.categoria.CategoriaResponseDTO;
 import com.salesianostriana.dam.proyecto_evaluable.repositories.CategoriaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,43 +19,42 @@ public class CategoriaService {
         return repository.findById(id).orElseThrow(() -> new CategoriaNotFoundException(id));
     }
 
-    public CategoriaResponseDTO create(CategoriaRequestDTO categoriaDTO) {
+    public Categoria create(Categoria categoria) {
 
-        if (repository.findByNombre(categoriaDTO.getNombre()).isPresent()) {
-            throw new NombreDuplicadoException("categoria", categoriaDTO.getNombre());
+        if (repository.findByNombre(categoria.getNombre()).isPresent()) {
+            throw new NombreDuplicadoException("categoria", categoria.getNombre());
         }
 
-        return CategoriaResponseDTO.toDTO(repository.save(categoriaDTO.fromDTO()));
+        return repository.save(categoria);
     }
 
-    public List<CategoriaResponseDTO> list() {
+    public List<Categoria> list() {
         List<Categoria> listadoCategorias = repository.findAll();
 
         if (listadoCategorias.isEmpty()) {
             throw new CategoriaNotFoundException();
         }
 
-        return listadoCategorias.stream().map(CategoriaResponseDTO::toDTO).toList();
+        return listadoCategorias;
     }
 
-    public CategoriaResponseDTO read(Long id) {
-        return CategoriaResponseDTO.toDTO(checkIfExist(id));
+    public Categoria read(Long id) {
+        return checkIfExist(id);
     }
 
 
-    public CategoriaResponseDTO update(Long id, CategoriaRequestDTO categoriaDTO) {
+    public Categoria update(Long id, Categoria categoria) {
         Categoria categoriaOriginal = checkIfExist(id);
 
         if (
-                !categoriaOriginal.getNombre().equalsIgnoreCase(categoriaDTO.getNombre()) &&
-                repository.findByNombre(categoriaDTO.getNombre()).isPresent()
+                !categoriaOriginal.getNombre().equalsIgnoreCase(categoria.getNombre()) &&
+                repository.findByNombre(categoria.getNombre()).isPresent()
         ) {
-            throw new NombreDuplicadoException("Ya existe una categoría con el nombre: " + categoriaDTO.getNombre());
+            throw new NombreDuplicadoException("Ya existe una categoría con el nombre: " + categoria.getNombre());
         }
 
-        categoriaOriginal = categoriaOriginal.modify(categoriaDTO.fromDTO());
+        return repository.save(categoriaOriginal.modify(categoria));
 
-        return CategoriaResponseDTO.toDTO(categoriaOriginal);
     }
 
     public void delete(Long id) {
