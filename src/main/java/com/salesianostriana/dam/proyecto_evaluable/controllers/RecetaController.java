@@ -11,7 +11,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
@@ -354,8 +353,34 @@ public class RecetaController {
         return ResponseEntity.ok(RecetaResponseDTO.toDTO(service.update(id, service.fromDTO(receta))));
     }
 
-    @DeleteMapping()
+    @DeleteMapping("/{id}")
     @Operation(summary = "Eliminar Receta", description = "Elimina una receta existente por su ID")
+    @ApiResponse(
+            responseCode = "204",
+            description = "Receta eliminada correctamente",
+            content = @Content()
+    )
+    @ApiResponse(
+            responseCode = "404",
+            description = "Receta no encontrada",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = ProblemDetail.class),
+                    examples = {
+                            @ExampleObject(
+                                    value = """
+                                            {
+                                              "type": "about:blank",
+                                              "title": "La entidad solicitada no se encuentra en la BBDD.",
+                                              "status": 404,
+                                              "detail": "No se ha encontrado ninguna receta con id: 1",
+                                              "instance": "/api/v1/recetas/1"
+                                            }
+                                            """
+                            )
+                    }
+            )
+    )
     public ResponseEntity<?> delete(
             @Parameter(required = true, description = "ID de la receta a eliminar", example = "1")
             @PathVariable Long id
