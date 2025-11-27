@@ -2,18 +2,28 @@ package com.salesianostriana.dam.proyecto_evaluable.errors;
 
 import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.IngredienteYaAnadidoException;
 import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.NombreDuplicadoException;
+import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.badArguments.CategoriaBadArgumentsException;
 import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.notFound.EntidadNotFoundException;
 import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.TiempoInvalidoException;
-import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.notFound.IngredienteNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.net.URI;
 
-@ControllerAdvice
+@RestControllerAdvice
 public class GlobalExceptionHandler {
+
+    @ExceptionHandler(CategoriaBadArgumentsException.class)
+    public ProblemDetail handleCategoriaBadArgumentsException(CategoriaBadArgumentsException ex) {
+        ProblemDetail pd = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, ex.getMessage());
+
+        pd.setTitle("Los argumentos proporcionados para la categoría no son válidos.");
+        pd.setType(URI.create("about:blank"));
+
+        return pd;
+    }
 
     @ExceptionHandler(IngredienteYaAnadidoException.class)
     public ProblemDetail handleIngredienteYaAnadidoException(IngredienteYaAnadidoException ex) {

@@ -8,7 +8,6 @@ import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.notFound.Re
 import com.salesianostriana.dam.proyecto_evaluable.models.Categoria;
 import com.salesianostriana.dam.proyecto_evaluable.models.Receta;
 import com.salesianostriana.dam.proyecto_evaluable.models.dtos.receta.RecetaRequestDTO;
-import com.salesianostriana.dam.proyecto_evaluable.models.dtos.receta.RecetaResponseDTO;
 import com.salesianostriana.dam.proyecto_evaluable.models.extras.Dificultad;
 import com.salesianostriana.dam.proyecto_evaluable.repositories.RecetaRepository;
 import lombok.RequiredArgsConstructor;
@@ -40,51 +39,48 @@ public class RecetaService {
                 .build();
     }
 
-    public RecetaResponseDTO create(RecetaRequestDTO recetaDTO) {
-        Receta receta = fromDTO(recetaDTO);
+    public Receta create(Receta receta) {
 
         if (repository.findByNombre(receta.getNombre()).isPresent()) {
-            throw new NombreDuplicadoException("receta", recetaDTO.getNombre());
+            throw new NombreDuplicadoException("receta", receta.getNombre());
         }
 
         if (receta.getTiempoPreparacionMin() <= 0) {
             throw new TiempoInvalidoException("No se puede crear una receta con un tiempo de preparación menor o igual a 0 minutos.");
         }
 
-        return RecetaResponseDTO.toDTO(repository.save(receta));
+        return repository.save(receta);
     }
 
-    public List<RecetaResponseDTO> list() {
+    public List<Receta> list() {
         List<Receta> recetas = repository.findAll();
 
         if (recetas.isEmpty()) {
             throw new RecetaNotFoundException();
         }
 
-        return recetas.stream().map(RecetaResponseDTO::toDTO).toList();
+        return recetas;
     }
 
-    public RecetaResponseDTO read(Long id) {
-        return RecetaResponseDTO.toDTO(checkIfExist(id));
+    public Receta read(Long id) {
+        return checkIfExist(id);
     }
 
-    public RecetaResponseDTO update(Long id, RecetaRequestDTO recetaDTO) {
+    public Receta update(Long id, Receta receta) {
         Receta recetaOriginal = checkIfExist(id);
 
         if (
-                !recetaOriginal.getNombre().equalsIgnoreCase(recetaDTO.getNombre()) &&
-                repository.findByNombre(recetaDTO.getNombre()).isPresent()
+                !recetaOriginal.getNombre().equalsIgnoreCase(receta.getNombre()) &&
+                repository.findByNombre(receta.getNombre()).isPresent()
         ) {
-            throw new NombreDuplicadoException("Ya existe una receta con el nombre: " + recetaDTO.getNombre());
+            throw new NombreDuplicadoException("Ya existe una receta con el nombre: " + receta.getNombre());
         }
 
-        if (recetaDTO.getTiempoPreparacionMin() <= 0) {
+        if (receta.getTiempoPreparacionMin() <= 0) {
             throw new TiempoInvalidoException("No se puede crear una receta con un tiempo de preparación menor o igual a 0 minutos.");
         }
 
-        recetaOriginal = recetaOriginal.modify(fromDTO(recetaDTO));
-
-        return RecetaResponseDTO.toDTO(recetaOriginal);
+        return repository.save(recetaOriginal.modify(receta));
     }
 
     public void delete(Long id) {
