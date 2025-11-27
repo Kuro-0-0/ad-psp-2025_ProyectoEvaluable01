@@ -3,8 +3,6 @@ package com.salesianostriana.dam.proyecto_evaluable.services;
 import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.NombreDuplicadoException;
 import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.notFound.IngredienteNotFoundException;
 import com.salesianostriana.dam.proyecto_evaluable.models.Ingrediente;
-import com.salesianostriana.dam.proyecto_evaluable.models.dtos.ingrediente.IngredienteRequestDTO;
-import com.salesianostriana.dam.proyecto_evaluable.models.dtos.ingrediente.IngredienteResponseDTO;
 import com.salesianostriana.dam.proyecto_evaluable.repositories.IngredienteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,24 +15,24 @@ public class IngredienteService {
 
     private final IngredienteRepository repository;
 
-    public IngredienteResponseDTO create(IngredienteRequestDTO ingredienteDTO) {
-        Ingrediente ingrediente = ingredienteDTO.fromDTO();
+    public Ingrediente create(Ingrediente ingrediente) {
+        System.out.println(ingrediente.getNombre());
 
-        if (repository.findByNombre(ingredienteDTO.getNombre()).isPresent()) {
-            throw new NombreDuplicadoException("ingrediente",ingredienteDTO.getNombre());
+        if (repository.findByNombre(ingrediente.getNombre()).isPresent()) {
+            throw new NombreDuplicadoException("ingrediente",ingrediente.getNombre());
         }
 
-        return IngredienteResponseDTO.toDTO(repository.save(ingrediente));
+        return repository.save(ingrediente);
     }
 
-    public List<IngredienteResponseDTO> list() {
+    public List<Ingrediente> list() {
         List<Ingrediente> listadoIngredientes = repository.findAll();
 
         if (listadoIngredientes.isEmpty()) {
             throw new IngredienteNotFoundException();
         }
 
-        return listadoIngredientes.stream().map(IngredienteResponseDTO::toDTO).toList();
+        return listadoIngredientes;
     }
 
 
