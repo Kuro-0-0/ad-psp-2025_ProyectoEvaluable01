@@ -17,7 +17,7 @@ public class RecetaIngredienteResponseDTO {
     private Double cantidad;
     private String unidad;
 
-    private RecetaIngredienteResponseDTO toDTO(RecetaIngrediente recetaIngrediente){
+    public static RecetaIngredienteResponseDTO toDTO(RecetaIngrediente recetaIngrediente){
         return RecetaIngredienteResponseDTO.builder()
                 .nombreIngrediente(recetaIngrediente.getIngrediente().getNombre())
                 .cantidad(recetaIngrediente.getCantidad())
