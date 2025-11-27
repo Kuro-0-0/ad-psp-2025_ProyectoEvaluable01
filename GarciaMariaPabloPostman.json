@@ -1,0 +1,333 @@
+{
+	"info": {
+		"_postman_id": "4c8b3bba-26d4-4cae-89a9-af96183e1e48",
+		"name": "ProyectoEvaluable01",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42129065",
+		"_collection_link": "https://warped-equinox-59252.postman.co/workspace/My-Workspace~55617a70-8020-46c1-8af0-c3eb99f0578e/collection/42129065-4c8b3bba-26d4-4cae-89a9-af96183e1e48?action=share&source=collection_link&creator=42129065"
+	},
+	"item": [
+		{
+			"name": "Categoria",
+			"item": [
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}{{categorias}}",
+							"host": [
+								"{{baseURL}}{{categorias}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detalles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}{{categorias}}/1",
+							"host": [
+								"{{baseURL}}{{categorias}}"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Postres\",\r\n  \"descripcion\": \"Categoría para recetas de postres y dulces.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}{{categorias}}",
+							"host": [
+								"{{baseURL}}{{categorias}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Postres2\",\r\n  \"descripcion\": \"Categoría para recetas de postres y dulces. ACTULIZADO..\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}{{categorias}}/2",
+							"host": [
+								"{{baseURL}}{{categorias}}"
+							],
+							"path": [
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}{{categorias}}/1",
+							"host": [
+								"{{baseURL}}{{categorias}}"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Receta",
+			"item": [
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}{{recetas}}",
+							"host": [
+								"{{baseURL}}{{recetas}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detalles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}{{recetas}}/1",
+							"host": [
+								"{{baseURL}}{{recetas}}"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Paella2\",\r\n  \"dificultad\": \"MEDIA\",\r\n  \"tiempoPreparacionMin\": 60,\r\n  \"categoriaID\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}{{recetas}}",
+							"host": [
+								"{{baseURL}}{{recetas}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Paella Valenciana\",\r\n  \"dificultad\": \"MEDIA\",\r\n  \"tiempoPreparacionMin\": 70,\r\n  \"categoriaID\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}{{recetas}}/1",
+							"host": [
+								"{{baseURL}}{{recetas}}"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}{{recetas}}/1",
+							"host": [
+								"{{baseURL}}{{recetas}}"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Añadir ingrediente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ingredienteId\": 1,\r\n  \"cantidad\": 200,\r\n  \"unidad\": \"gramos\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}{{recetas}}/1/ingredientes",
+							"host": [
+								"{{baseURL}}{{recetas}}"
+							],
+							"path": [
+								"1",
+								"ingredientes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ingredientes",
+			"item": [
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}{{ingredientes}}",
+							"host": [
+								"{{baseURL}}{{ingredientes}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Postres\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}{{ingredientes}}",
+							"host": [
+								"{{baseURL}}{{ingredientes}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "actualVersion",
+			"value": ""
+		},
+		{
+			"key": "baseURL",
+			"value": ""
+		},
+		{
+			"key": "categorias",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "ingredientes",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "recetas",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
