@@ -11,18 +11,17 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @Tag(name = "Ingrediente", description = "Controlador de Ingredientes")
 @RequiredArgsConstructor
+@RequestMapping("/api/v1/ingredientes")
 public class IngredienteController {
 
     private final IngredienteService service;
@@ -33,7 +32,7 @@ public class IngredienteController {
             description = "Crea un nuevo ingrediente"
     )
     @ApiResponse(
-            responseCode = "200",
+            responseCode = "201",
             description = "Ingrediente creado correctamente",
             content = @Content(
                     mediaType = "application/json",
@@ -92,7 +91,7 @@ public class IngredienteController {
             )
             @RequestBody IngredienteRequestDTO ingrediente
             ) {
-        return ResponseEntity.ok(IngredienteResponseDTO.toDTO(service.create(ingrediente.fromDTO())));
+        return ResponseEntity.status(HttpStatus.CREATED).body(IngredienteResponseDTO.toDTO(service.create(ingrediente.fromDTO())));
     }
 
     @GetMapping()

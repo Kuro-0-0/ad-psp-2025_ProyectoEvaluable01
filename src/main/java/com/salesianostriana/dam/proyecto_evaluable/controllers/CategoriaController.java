@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 @Tag(name = "Categorías", description = "Controlador para gestionar las categorías de las recetas.")
 @RequestMapping("/api/v1/categorias")
@@ -217,7 +217,7 @@ public class CategoriaController {
     @PutMapping("/{id}")
     @Operation(summary = "Editar categoría", description = "Permite editar una categoría existente proporcionando su ID y los nuevos datos.")
     @ApiResponse(
-            responseCode = "200",
+            responseCode = "201",
             description = "Categoría editada correctamente.",
             content = @Content(
                     mediaType = "application/JSON",

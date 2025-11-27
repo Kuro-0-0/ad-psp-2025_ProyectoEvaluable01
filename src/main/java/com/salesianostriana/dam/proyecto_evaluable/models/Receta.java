@@ -31,7 +31,7 @@ public class Receta {
     @ManyToOne
     private Categoria categoria;
 
-    @OneToMany(mappedBy = "receta", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "receta", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
     @ToString.Exclude
     private Set<RecetaIngrediente> ingredientes = new HashSet<>();
