@@ -16,7 +16,7 @@ public class RecetaIngrediente {
 
     @Id
     private Long id;
-    private Integer cantidad;
+    private Double cantidad;
     private String unidad;
 
     @ManyToOne
