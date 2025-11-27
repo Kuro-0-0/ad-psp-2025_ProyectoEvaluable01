@@ -1,7 +1,10 @@
 package com.salesianostriana.dam.proyecto_evaluable.controllers;
 
+import com.salesianostriana.dam.proyecto_evaluable.models.RecetaIngrediente;
 import com.salesianostriana.dam.proyecto_evaluable.models.dtos.receta.RecetaRequestDTO;
 import com.salesianostriana.dam.proyecto_evaluable.models.dtos.receta.RecetaResponseDTO;
+import com.salesianostriana.dam.proyecto_evaluable.models.dtos.recetaIngrediente.RecetaIngredienteRequestDTO;
+import com.salesianostriana.dam.proyecto_evaluable.models.dtos.recetaIngrediente.RecetaIngredienteResponseDTO;
 import com.salesianostriana.dam.proyecto_evaluable.services.RecetaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -174,10 +177,11 @@ public class RecetaController {
                                               {
                                                 "id": 1,
                                                 "nombre": "Paella",
-                                                "dificultad": "MEDIA",
                                                 "tiempoPreparacionMin": 60,
-                                                "categoriaID": 1
-                                              },
+                                                "dificultad": "MEDIA",
+                                                "ingredientes": [],
+                                                "categoria": "Postres"
+                                              }
                                             ]
                                             """
                             )
@@ -387,6 +391,109 @@ public class RecetaController {
     ) {
         service.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+
+    @PostMapping("/{id}/ingredientes")
+    @Operation(summary = "Añadir Ingrediente a Receta", description = "Añade un ingrediente a una receta existente por su ID")
+    @ApiResponse(
+            responseCode = "404",
+            description = "Receta o Ingrediente no encontrado",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = ProblemDetail.class),
+                    examples = {
+                            @ExampleObject(
+                                    value = """
+                                            {
+                                              "type": "about:blank",
+                                              "title": "La entidad solicitada no se encuentra en la BBDD.",
+                                              "status": 404,
+                                              "detail": "No se ha encontrado ninguna receta con id: 1",
+                                              "instance": "/api/v1/recetas/1/ingredientes"
+                                            }
+                                            """
+                            ),
+                            @ExampleObject(
+                                    value = """
+                                            {
+                                              "type": "about:blank",
+                                              "title": "La entidad solicitada no se encuentra en la BBDD.",
+                                              "status": 404,
+                                              "detail": "No se ha encontrado ningún ingrediente con id: 2",
+                                              "instance": "/api/v1/recetas/97/ingredientes"
+                                            }
+                                            """
+                            )
+                    }
+
+            )
+    )
+    @ApiResponse(
+            responseCode = "409",
+            description = "El ingrediente ya ha sido añadido a la receta",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = ProblemDetail.class),
+                    examples = {
+                            @ExampleObject(
+                                    value = """
+                                            {
+                                              "type": "about:blank",
+                                              "title": "El ingrediente ya se encuentra en la receta.",
+                                              "status": 409,
+                                              "detail": "El ingrediente con ID 1 ya ha sido añadido a la receta con ID 1",
+                                              "instance": "/api/v1/recetas/1/ingredientes"
+                                            }
+                                            """
+                            )
+                    }
+            )
+    )
+    @ApiResponse(
+            responseCode = "200",
+            description = "Ingrediente añadido correctamente a la receta",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = RecetaIngredienteResponseDTO.class),
+                    examples = {
+                            @ExampleObject(
+                                    value = """
+                                            {
+                                              "nombreIngrediente": "Tomate",
+                                              "cantidad": 200,
+                                              "unidad": "gramos"
+                                            }
+                                            """
+                            )
+                    }
+            )
+    )
+    public ResponseEntity<RecetaIngredienteResponseDTO> addIngrediente(
+            @Parameter(required = true, description = "ID de la receta a la que se le va a añadir el ingrediente", example = "1")
+            @PathVariable Long id,
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    required = true,
+                    description = "Datos del ingrediente a añadir",
+                    content = @Content(
+                            mediaType = "application/JSON",
+                            schema = @Schema(implementation = RecetaIngredienteRequestDTO.class),
+                            examples = {
+                                    @ExampleObject(
+                                            value = """
+                                                    {
+                                                      "ingredienteId": 2,
+                                                      "cantidad": 200,
+                                                      "unidad": "gramos"
+                                                    }
+                                                    """
+                                    )
+                            }
+                    )
+            )
+            @RequestBody RecetaIngredienteRequestDTO recetaIngrediente
+    ) {
+        return ResponseEntity.ok().body(RecetaIngredienteResponseDTO.toDTO(service.addIngrediente(service.fromDTO(id,recetaIngrediente))));
     }
 
 

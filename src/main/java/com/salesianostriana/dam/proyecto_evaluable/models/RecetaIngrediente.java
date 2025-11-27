@@ -1,9 +1,6 @@
 package com.salesianostriana.dam.proyecto_evaluable.models;
 
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -15,6 +12,7 @@ import lombok.*;
 public class RecetaIngrediente {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Double cantidad;
     private String unidad;

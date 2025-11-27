@@ -47,4 +47,13 @@ public class Receta {
                 .ingredientes(this.ingredientes)
                 .build();
     }
+
+    public boolean checkIngrediente(Long ingredienteId) {
+        for (RecetaIngrediente ri : this.ingredientes) {
+            if (ri.getIngrediente().getId().equals(ingredienteId)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
