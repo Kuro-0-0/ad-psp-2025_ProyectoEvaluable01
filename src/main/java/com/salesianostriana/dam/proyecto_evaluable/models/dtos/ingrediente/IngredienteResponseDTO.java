@@ -3,6 +3,7 @@ package com.salesianostriana.dam.proyecto_evaluable.models.dtos.ingrediente;
 import com.salesianostriana.dam.proyecto_evaluable.models.Ingrediente;
 import com.salesianostriana.dam.proyecto_evaluable.models.RecetaIngrediente;
 import com.salesianostriana.dam.proyecto_evaluable.models.dtos.ingrediente.extras.RecetasIngredienteResponseDTO;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,8 +18,11 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class IngredienteResponseDTO {
 
+    @Schema(description = "ID del ingrediente", example = "1")
     private Long id;
+    @Schema(description = "Nombre del ingrediente", example = "Azúcar")
     private String nombre;
+    @Schema(description = "Recetas que contienen este ingrediente")
     private Set<RecetasIngredienteResponseDTO> recetas;
 
     public static IngredienteResponseDTO toDTO(Ingrediente ingrediente) {
