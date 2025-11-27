@@ -3,6 +3,7 @@ package com.salesianostriana.dam.proyecto_evaluable.services;
 import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.NombreDuplicadoException;
 import com.salesianostriana.dam.proyecto_evaluable.errors.exceptions.notFound.IngredienteNotFoundException;
 import com.salesianostriana.dam.proyecto_evaluable.models.Ingrediente;
+import com.salesianostriana.dam.proyecto_evaluable.models.RecetaIngrediente;
 import com.salesianostriana.dam.proyecto_evaluable.repositories.IngredienteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -35,5 +36,9 @@ public class IngredienteService {
         return listadoIngredientes;
     }
 
+    public Ingrediente checkIfExist(Long id) {
+        return repository.findById(id).orElseThrow(() -> new IngredienteNotFoundException(id));
 
+
+    }
 }
