@@ -1,0 +1,185 @@
+commit fb2e45ac21cc813197916a8232913fdd7f8cdd9e
+Author: Kuro-0-0 <145166612+Kuro-0-0@users.noreply.github.com>
+Date:   Thu Nov 27 21:31:45 2025 +0100
+
+    Añadida documentacion a los DTOs
+
+commit 8b219492fd5fede7679b3ff37f9a9700862b529d
+Author: Kuro-0-0 <145166612+Kuro-0-0@users.noreply.github.com>
+Date:   Thu Nov 27 21:23:08 2025 +0100
+
+    Readme listo.
+
+commit 8ce72c4416d07338015c764f23ef973fb48a4ad1
+Author: Kuro-0-0 <145166612+Kuro-0-0@users.noreply.github.com>
+Date:   Thu Nov 27 21:12:48 2025 +0100
+
+    POSTMAN listo
+
+commit 07046eaca234f99a00420e966cd385458cb92ec6
+Author: Kuro-0-0 <145166612+Kuro-0-0@users.noreply.github.com>
+Date:   Thu Nov 27 20:34:20 2025 +0100
+
+    Añadir Ingredientes a recetas LISTOS...
+
+commit 4ae82e182d2fcbea4934aecaccc5d6a4cd240c77
+Author: Kuro-0-0 <145166612+Kuro-0-0@users.noreply.github.com>
+Date:   Thu Nov 27 19:43:51 2025 +0100
+
+    RecetaResponseDTO actualizado...
+
+commit d562e8bc2ee237307d935ffe141d52f1040ac8da
+Author: Kuro-0-0 <145166612+Kuro-0-0@users.noreply.github.com>
+Date:   Thu Nov 27 19:14:23 2025 +0100
+
+    RecetaIngredienteResponseDTO Listo...
+
+commit ce19d726b7bb6375f619f2f0999a2d0d50ab6b6f
+Author: Kuro-0-0 <145166612+Kuro-0-0@users.noreply.github.com>
+Date:   Thu Nov 27 18:58:26 2025 +0100
+
+    RecetaIngredienteRequestDTO Listo...
+
+commit 7a0d81a47c8e3df45d024da7bfc2e6b3f93cdce1
+Author: Kuro-0-0 <145166612+Kuro-0-0@users.noreply.github.com>
+Date:   Thu Nov 27 16:18:25 2025 +0100
+
+    RecetaController lista, Logica, Documentacion y Postman.
+
+commit 5fee050c4b610e96325607779a1838a189bda1ea
+Author: Pablo Garcia - Clase <garcia.mapab24@triana.salesianos.edu>
+Date:   Thu Nov 27 14:29:52 2025 +0100
+
+    RecetaController para casa
+
+commit 17e73837b1f032fe02a748570311fc1ec7175c95
+Author: Pablo Garcia - Clase <garcia.mapab24@triana.salesianos.edu>
+Date:   Thu Nov 27 11:01:56 2025 +0100
+
+    IngredienteController Finalizado, funcionalidad y documentacion.
+
+commit 93487f10cc01504253cc7014746d7250cd30502d
+Author: Pablo Garcia - Clase <garcia.mapab24@triana.salesianos.edu>
+Date:   Thu Nov 27 09:59:39 2025 +0100
+
+    CategoriaController Finalizado, funcionalidad y documentacion.
+
+commit b79e275b523d8fe594547a90ad415b5299068adf
+Author: Kuro-0-0 <145166612+Kuro-0-0@users.noreply.github.com>
+Date:   Wed Nov 26 22:04:36 2025 +0100
+
+    Firmas listas, falta documentacion y rellenar los metodos.
+
+commit 7d8057cfa2167aa4cb1cbabdfa5696c59b820429
+Author: Pablo Garcia - Clase <garcia.mapab24@triana.salesianos.edu>
+Date:   Wed Nov 26 13:30:14 2025 +0100
+
+    Process
+
+commit 5567e953ff5a4f40c85534c59e44923f483ebe4b
+Author: Pablo Garcia - Clase <garcia.mapab24@triana.salesianos.edu>
+Date:   Wed Nov 26 13:14:41 2025 +0100
+
+    Dependencias insertadas
+
+commit 08ea9aab59f3374939e63e16d107f0d031092fb0
+Author: Pablo Garcia - Clase <garcia.mapab24@triana.salesianos.edu>
+Date:   Wed Nov 26 13:05:55 2025 +0100
+
+    Service listo
+
+commit fe77ddba9bff2dfe9b03d4a18a15aa3261f06adb
+Author: Pablo Garcia - Clase <garcia.mapab24@triana.salesianos.edu>
+Date:   Wed Nov 26 10:54:08 2025 +0100
+
+    Create listo
+
+commit 65beebc7f88d3ec4d8bb0cb29f2d4910a7fa8438
+Author: Pablo Garcia - Clase <garcia.mapab24@triana.salesianos.edu>
+Date:   Wed Nov 26 10:39:07 2025 +0100
+
+    DTOs listos
+
+commit e222a0f19ec3127adbb36812f0e7ee364a2b9e72
+Author: Pablo Garcia - Clase <garcia.mapab24@triana.salesianos.edu>
+Date:   Wed Nov 26 09:43:21 2025 +0100
+
+    Servicio Ingrediente listo
+
+commit 57278d0a45f0be5febf742519bf982d97d1876b8
+Author: Kuro-0-0 <145166612+Kuro-0-0@users.noreply.github.com>
+Date:   Tue Nov 25 20:27:53 2025 +0100
+
+    DTOs listos
+
+commit ea25f658cebdedb5bff8a5f813a77644c5482f0e
+Author: Kuro-0-0 <145166612+Kuro-0-0@users.noreply.github.com>
+Date:   Tue Nov 25 20:07:30 2025 +0100
+
+    Service finished
+
+commit 753f71979e0700bda84dd554a0eb972dce912c2e
+Author: Kuro-0-0 <145166612+Kuro-0-0@users.noreply.github.com>
+Date:   Tue Nov 25 19:34:57 2025 +0100
+
+    Categoria DTOs Listos
+
+commit 0200e61d7add4e410bbb420585b414461c52cb66
+Author: Kuro-0-0 <145166612+Kuro-0-0@users.noreply.github.com>
+Date:   Tue Nov 25 19:24:20 2025 +0100
+
+    GlobalExceptionHandler listo
+
+commit 9ae98a953d5323a534c0142d80c144a3c35a7a7d
+Author: Kuro-0-0 <145166612+Kuro-0-0@users.noreply.github.com>
+Date:   Tue Nov 25 19:09:03 2025 +0100
+
+    Exceptions ready
+
+commit 7ad4fc6bd546ed20ed4fdec5f226cd1e2873e830
+Author: Pablo Garcia - Clase <garcia.mapab24@triana.salesianos.edu>
+Date:   Tue Nov 25 14:27:42 2025 +0100
+
+    Repositorios listos
+
+commit 178c4e8472de6de75a14e71643cd29f1374b3763
+Author: Pablo Garcia - Clase <garcia.mapab24@triana.salesianos.edu>
+Date:   Tue Nov 25 14:13:55 2025 +0100
+
+    RecetaIngredientes listo
+
+commit 1081ef2e5cbc0097a1606c53a0aa4a937ce3d56a
+Author: Pablo Garcia - Clase <garcia.mapab24@triana.salesianos.edu>
+Date:   Tue Nov 25 14:09:01 2025 +0100
+
+    Receta lista
+
+commit 037898888b5d1bbcb83d0f6b02788c8e9b34b807
+Author: Pablo Garcia - Clase <garcia.mapab24@triana.salesianos.edu>
+Date:   Tue Nov 25 14:01:44 2025 +0100
+
+    Ingredientes listo
+
+commit f27a7e353e4f1a54434e61e31e79e96185942883
+Author: Pablo Garcia - Clase <garcia.mapab24@triana.salesianos.edu>
+Date:   Tue Nov 25 13:58:31 2025 +0100
+
+    Finished
+
+commit 8563195934dcf5a45ce5ad6a3700ae37d3229268
+Author: Pablo Garcia - Clase <garcia.mapab24@triana.salesianos.edu>
+Date:   Tue Nov 25 13:55:39 2025 +0100
+
+    Categorias finished
+
+commit 122f06482c8af64ceda0b3dae3c239ef514a3ca7
+Author: Pablo Garcia - Clase <garcia.mapab24@triana.salesianos.edu>
+Date:   Tue Nov 25 11:47:47 2025 +0100
+
+    Spring initializer
+
+commit b6fc0ea37660d8a43493606669ddae33a5bb1c0a
+Author: Kuro-0-0 <145166612+Kuro-0-0@users.noreply.github.com>
+Date:   Tue Nov 25 11:39:38 2025 +0100
+
+    Initial commit
