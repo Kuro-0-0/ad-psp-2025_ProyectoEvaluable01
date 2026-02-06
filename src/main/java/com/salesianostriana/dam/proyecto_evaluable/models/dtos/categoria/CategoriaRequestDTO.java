@@ -17,7 +17,7 @@ public class CategoriaRequestDTO {
     @NotBlank
     private String nombre;
     @Schema(description = "Descripción de la categoría", example = "Categoría para postres dulces")
-    @NotBlank
+    @NotBlank          ()
     private String descripcion;
 
     public static CategoriaRequestDTO toDTO(Categoria c) {
